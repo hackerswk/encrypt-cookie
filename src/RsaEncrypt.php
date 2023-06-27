@@ -91,7 +91,7 @@ class RsaEncrypt
      */
     public function setEncrypt($data)
     {
-        $encrypt_data = openssl_public_encrypt($data, $encrypt_data, $this->pub_key);
+        openssl_public_encrypt($data, $encrypt_data, $this->pub_key);
 
         return $encrypt_data;
     }
@@ -104,7 +104,7 @@ class RsaEncrypt
      */
     public function setDecrypt($data)
     {
-        $decrypt_data = openssl_private_decrypt($data, $decrypt_data, $this->pri_key);
+        openssl_private_decrypt($data, $decrypt_data, $this->pri_key);
 
         return $decrypt_data;
     }
