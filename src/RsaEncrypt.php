@@ -40,7 +40,7 @@ class RsaEncrypt
     private $pri_key;
 
     /**
-     * initialize needed vars and read config.php
+     * initialize
      */
     public function __construct()
     {
@@ -54,6 +54,9 @@ class RsaEncrypt
      */
     public function setPubKeyPath($pub_key_path)
     {
+        if (empty($pub_key_path)) {
+            throw new Exception ("Public key path is empty!");
+        }
         $this->pub_key_path = $pub_key_path;
     }
 
@@ -64,6 +67,9 @@ class RsaEncrypt
      */
     public function setPriKeyPath($pri_key_path)
     {
+        if (empty($pri_key_path)) {
+            throw new Exception ("Private key path is empty!");
+        }
         $this->pri_key_path = $pri_key_path;
     }
 
@@ -72,6 +78,9 @@ class RsaEncrypt
      */
     public function getPubKey()
     {
+        if (empty($this->pub_key_path)) {
+            throw new Exception ("Public key path is empty!");
+        }
         $this->pub_key = openssl_pkey_get_public(file_get_contents($this->pub_key_path));
     }
 
@@ -80,7 +89,10 @@ class RsaEncrypt
      */
     public function getPriKey()
     {
-        $this->pri_key = openssl_pkey_get_private(file_get_contents($pri_key_path));
+        if (empty($this->pri_key_path)) {
+            throw new Exception ("Private key path is empty!");
+        }
+        $this->pri_key = openssl_pkey_get_private(file_get_contents($this->pri_key_path));
     }
 
     /**
@@ -91,6 +103,12 @@ class RsaEncrypt
      */
     public function setEncrypt($data)
     {
+        if (empty($data)) {
+            throw new Exception ("Data is empty!");
+        }
+        if (empty($this->pub_key)) {
+            throw new Exception ("Public key is null!");
+        }
         openssl_public_encrypt($data, $encrypt_data, $this->pub_key);
 
         return $encrypt_data;
@@ -104,6 +122,12 @@ class RsaEncrypt
      */
     public function setDecrypt($data)
     {
+        if (empty($data)) {
+            throw new Exception ("Data is empty!");
+        }
+        if (empty($this->pri_key)) {
+            throw new Exception ("Private key is null!");
+        }
         openssl_private_decrypt($data, $decrypt_data, $this->pri_key);
 
         return $decrypt_data;
