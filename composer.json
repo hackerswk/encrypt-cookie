@@ -1,5 +1,5 @@
 {
-    "name": "stanleysie/s-encrypt-cookie",
+    "name": "stanleysie/encrypt-cookie",
     "description": "Use php openssl native function to encrypt and unencrypt for cookie.",
     "type": "library",
     "license": "MIT",
