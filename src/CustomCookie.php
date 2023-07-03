@@ -7,7 +7,7 @@
  * @version     Release: 1.0
  */
 
-namespace Encrypt;
+namespace Stanleysie\EncryptCookie;
 
 class CustomCookie
 {
