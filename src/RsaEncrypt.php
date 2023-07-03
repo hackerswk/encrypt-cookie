@@ -9,6 +9,8 @@
 
 namespace Stanleysie\EncryptCookie;
 
+use \Exception as Exception;
+
 class RsaEncrypt
 {
     /**
