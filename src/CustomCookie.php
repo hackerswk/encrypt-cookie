@@ -106,7 +106,7 @@ class CustomCookie
         if (empty($cexpire_time)) {
             throw new Exception ("cexpire_time is empty!");
         }
-        if (!is_int($expire_time)) {
+        if (!is_int($cexpire_time)) {
             throw new Exception ("cexpire_time is not integer!");
         }
         $this->cookie_expire_time = time() + 3600 * 24 * $cexpire_time;
