@@ -109,7 +109,7 @@ class CustomCookie
         if (!is_int($expire_time)) {
             throw new Exception ("cexpire_time is not integer!");
         }
-        $this->cookie_expire_time = $cexpire_time;
+        $this->cookie_expire_time = time() + 3600 * 24 * $cexpire_time;
     }
 
     /**
@@ -282,6 +282,24 @@ class CustomCookie
         }
 
         return true;
+    }
+
+    /**
+     * set cookie
+     * 
+     * @return void
+     */
+    public function setCookie()
+    {
+        setcookie(
+            $this->getCookieName(),
+            $this->getCookieValue(),
+            $this->getCookieExpireTime(),
+            $this->getCookiePath(),
+            $this->getCookieDomain(),
+            $this->getCookieSecure(),
+            $this->getCookieHttp()
+        );
     }
 
 }
