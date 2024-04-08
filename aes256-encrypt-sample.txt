@@ -1,0 +1,12 @@
+// Usage Example
+$key = 'YourSecretKeyHere'; // Set your secret key
+$encryptor = new AES256Encryption($key);
+
+// Encrypt data
+$dataToEncrypt = 'Sensitive data';
+$encryptedData = $encryptor->encrypt($dataToEncrypt);
+echo 'Encrypted Data: ' . $encryptedData . "\n";
+
+// Decrypt data
+$decryptedData = $encryptor->decrypt($encryptedData);
+echo 'Decrypted Data: ' . $decryptedData . "\n";
