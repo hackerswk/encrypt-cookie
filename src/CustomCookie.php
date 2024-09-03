@@ -23,28 +23,28 @@ class CustomCookie
     /**
      * cookie value
      *
-     * @var String 
+     * @var String
      */
     private $cookie_val;
 
     /**
      * cookie expire time
      *
-     * @var String 
+     * @var String
      */
     private $cookie_expire_time;
-    
+
     /**
      * cookie path
      *
-     * @var String 
+     * @var String
      */
     private $cookie_path;
 
     /**
      * cookie domain
      *
-     * @var String 
+     * @var String
      */
     private $cookie_domain;
 
@@ -67,106 +67,106 @@ class CustomCookie
      */
     public function __construct()
     {
-    
+
     }
 
     /**
      * set cookie name
-     * 
+     *
      * @param $canme
      */
     public function setCookieName($cname)
     {
         if (empty($cname)) {
-            throw new Exception ("cname is empty!");
+            throw new Exception("cname is empty!");
         }
         $this->cookie_name = $cname;
     }
 
     /**
      * set cookie value
-     * 
+     *
      * @param $cvalue
      */
     public function setCookieValue($cvalue)
     {
         if (empty($cvalue)) {
-            throw new Exception ("cvalue is empty!");
+            throw new Exception("cvalue is empty!");
         }
         $this->cookie_val = $cvalue;
     }
 
     /**
      * set cookie expire time
-     * 
+     *
      * @param $cexpire_time
      */
     public function setCookieExpireTime($cexpire_time)
     {
         if (empty($cexpire_time)) {
-            throw new Exception ("cexpire_time is empty!");
+            throw new Exception("cexpire_time is empty!");
         }
         if (!is_int($cexpire_time)) {
-            throw new Exception ("cexpire_time is not integer!");
+            throw new Exception("cexpire_time is not integer!");
         }
         $this->cookie_expire_time = time() + 3600 * 24 * $cexpire_time;
     }
 
     /**
      * set cookie path
-     * 
+     *
      * @param $cpath
      */
     public function setCookiePath($cpath)
     {
         if (empty($cpath)) {
-            throw new Exception ("cpath is empty!");
+            throw new Exception("cpath is empty!");
         }
         $this->cookie_path = $cpath;
     }
 
     /**
      * set cookie domain
-     * 
+     *
      * @param $cdomain
      */
     public function setCookieDomain($cdomain)
     {
         if (empty($cdomain)) {
-            throw new Exception ("cdomain is empty!");
+            throw new Exception("cdomain is empty!");
         }
         $this->cookie_domain = $cdomain;
     }
 
     /**
      * set cookie secure
-     * 
+     *
      * @param $csecure
      */
     public function setCookieSecure($csecure)
     {
         if (empty($csecure)) {
-            throw new Exception ("csecure is empty!");
+            throw new Exception("csecure is empty!");
         }
         if (!is_bool($csecure)) {
-            throw new Exception ("csecure is not bool!");
+            throw new Exception("csecure is not bool!");
         }
         $this->cookie_secure = $csecure;
     }
 
     /**
      * set cookie http
-     * 
+     *
      * @param $chttp
      */
     public function setCookieHttp($chttp)
     {
         if (empty($chttp)) {
-            throw new Exception ("chttp is empty!");
+            throw new Exception("chttp is empty!");
         }
         if (!is_bool($chttp)) {
-            throw new Exception ("chttp is not bool!");
-        }   
+            throw new Exception("chttp is not bool!");
+        }
         $this->cookie_http = $chttp;
     }
 
@@ -228,20 +228,20 @@ class CustomCookie
 
     /**
      * combine cookie value
-     * 
+     *
      * @param $uid, $data
      * @return String
      */
     public function combineCookieValue($uid, $data)
     {
         if (empty($uid)) {
-            throw new Exception ("uid is empty!");
+            throw new Exception("uid is empty!");
         }
         if (!is_int($uid)) {
-            throw new Exception ("uid is not integer!");
+            throw new Exception("uid is not integer!");
         }
         if (empty($data)) {
-            throw new Exception ("data is empty!");
+            throw new Exception("data is empty!");
         }
 
         $combine_data = $uid . ":::" . $data;
@@ -251,14 +251,14 @@ class CustomCookie
 
     /**
      * uncombine cookie value
-     * 
+     *
      * @param $data
      * @return Array
      */
     public function unCombineCookieValue($data)
     {
         if (empty($data)) {
-            throw new Exception ("Data is empty!");
+            throw new Exception("Data is empty!");
         }
 
         $uncombine_data_array = explode(":::", $data);
@@ -268,14 +268,14 @@ class CustomCookie
 
     /**
      * verify cookie
-     * 
+     *
      * @param $cname
      * @return Bool
      */
     public function verifyCookie($cname)
     {
         if (empty($cname)) {
-            throw new Exception ("cname is empty!");
+            throw new Exception("cname is empty!");
         }
         if (!isset($_COOKIE[$cname])) {
             return false;
@@ -285,13 +285,13 @@ class CustomCookie
     }
 
     /**
-     * set cookie
-     * 
-     * @return void
+     * Set cookie and return whether it was successful
+     *
+     * @return bool
      */
     public function setCookie()
     {
-        setcookie(
+        return setcookie(
             $this->getCookieName(),
             $this->getCookieValue(),
             $this->getCookieExpireTime(),
